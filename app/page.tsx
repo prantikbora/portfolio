@@ -34,7 +34,7 @@ const staggerContainer = {
 };
 
 export default function Portfolio() {
-  const videoRef = useRef(null);
+const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
