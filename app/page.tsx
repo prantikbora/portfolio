@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Head from "next/head";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   Github,
   Linkedin,
@@ -19,13 +19,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-// Animation Variants for reusability
-const fadeInUp = {
+// FIXED: Added the : Variants type definition here
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const staggerContainer = {
+// FIXED: Added the : Variants type definition here
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -34,7 +35,7 @@ const staggerContainer = {
 };
 
 export default function Portfolio() {
-const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
