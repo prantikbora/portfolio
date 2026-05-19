@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Head from "next/head";
 import { motion, Variants } from "framer-motion";
 import {
@@ -19,13 +19,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-// FIXED: Added the : Variants type definition here
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-// FIXED: Added the : Variants type definition here
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -34,29 +32,19 @@ const staggerContainer: Variants = {
   },
 };
 
+const textReveal: Variants = {
+  hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: "easeOut" }
+  },
+};
+
 export default function Portfolio() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.playsInline = true;
-      
-      const playPromise = videoRef.current.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          // Playback started successfully
-        }).catch((error) => {
-          console.warn("Autoplay paused by browser (Battery Saver or Autoplay Policy).");
-        });
-      }
-    }
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-slate-200 font-sans selection:bg-violet-500/30 relative overflow-hidden">
+    <div className="min-h-screen bg-transparent text-slate-200 font-sans selection:bg-violet-500/30 relative overflow-hidden">
       <Head>
         <title>Prantik Bora | Software Engineer</title>
       </Head>
@@ -117,49 +105,42 @@ export default function Portfolio() {
       </nav>
 
       <main className="relative z-10">
-        {/* --- HERO SECTION WITH VIDEO BACKGROUND --- */}
-        <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden mb-24 mt-16 bg-black">
-          
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            /* mix-blend-luminosity removed to preserve original video color */
-            className="absolute inset-0 w-full h-full object-cover opacity-40 z-10 pointer-events-none"
-          >
-            <source src="/hero-bg.mp4" type="video/mp4" />
-          </video>
-
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0f]/80 to-[#0a0a0f] z-20 pointer-events-none"></div>
+        {/* --- HERO SECTION --- */}
+        <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden mb-16 mt-16 bg-transparent px-4">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/80 z-20 pointer-events-none"></div>
 
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="relative z-30 max-w-5xl mx-auto px-6 text-center text-white"
+            className="relative z-30 max-w-5xl mx-auto text-center text-white w-full"
           >
             <motion.div variants={fadeInUp}>
-              <Badge className="px-4 py-1.5 mb-8 text-violet-200 bg-violet-950/40 border border-violet-800/30 backdrop-blur-md text-sm font-medium tracking-wide shadow-2xl shadow-violet-900/20">
-                Software Engineer-I at GlobizHub
+              <Badge className="px-4 py-1.5 mb-8 text-violet-200 bg-violet-950/40 border border-violet-800/30 backdrop-blur-md text-xs sm:text-sm font-medium tracking-wide shadow-2xl shadow-violet-900/20 rounded-full">
+                Software Engineer-I
               </Badge>
             </motion.div>
 
-            <motion.h2
-              variants={fadeInUp}
-              className="text-5xl md:text-8xl font-extrabold tracking-tight leading-tight mb-6 text-white drop-shadow-2xl"
-            >
-              Engineering <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-300 to-indigo-400">
-                Digital Realities.
-              </span>
-            </motion.h2>
+            <div className="overflow-hidden mb-6 flex flex-col items-center justify-center px-2">
+              <motion.h2
+                variants={staggerContainer}
+                className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tight leading-tight text-white drop-shadow-2xl flex flex-wrap justify-center gap-x-4"
+              >
+                {["Engineering", "Digital", "Realities."].map((word, i) => (
+                  <motion.span
+                    key={i}
+                    variants={textReveal}
+                    className={i === 2 ? "text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-300 to-indigo-400 pb-2" : "pb-2"}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.h2>
+            </div>
 
             <motion.p
               variants={fadeInUp}
-              className="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 leading-relaxed mb-10"
+              className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-400 leading-relaxed mb-10 px-4"
             >
               I bridge the gap between complex hardware systems and modern web
               interfaces. Specializing in full-stack architecture, React, and
@@ -276,14 +257,14 @@ export default function Portfolio() {
               <h3 className="text-4xl font-black text-white tracking-tight">Selected Works</h3>
               <div className="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent"></div>
             </div>
-            
+
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
               <motion.div
                 variants={fadeInUp}
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-md shadow-2xl hover:border-violet-500/30 transition-all duration-500 h-full flex flex-col rounded-3xl">
+                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-md shadow-[0_0_20px_rgba(139,92,246,0.1)] hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] hover:border-violet-400/50 transition-all duration-500 h-full flex flex-col rounded-3xl">
                   <div className="h-52 bg-[#050508] relative overflow-hidden flex items-center justify-center border-b border-white/5">
                     <div className="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-violet-900/30 via-transparent to-transparent group-hover:scale-110 transition-transform duration-700"></div>
                     <Server
@@ -292,10 +273,10 @@ export default function Portfolio() {
                     />
                   </div>
                   <CardContent className="p-8 flex flex-col flex-1">
-                    <h4 className="text-xl font-bold mb-3 text-white">
+                    <h4 className="text-xl font-bold mb-3 text-violet-100">
                       Shankardev Shishu Niketan
                     </h4>
-                    <p className="text-sm text-slate-400 mb-8 flex-1 leading-relaxed">
+                    <p className="text-sm text-slate-300 mb-8 flex-1 leading-relaxed">
                       Engineered a high-performance portal optimizing SSR and dynamic SEO for top-ranking Google Search Console visibility.
                     </p>
                     <div className="flex flex-wrap gap-2 mb-8">
@@ -321,7 +302,7 @@ export default function Portfolio() {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-md shadow-2xl hover:border-fuchsia-500/30 transition-all duration-500 h-full flex flex-col rounded-3xl">
+                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-md shadow-[0_0_20px_rgba(217,70,239,0.1)] hover:shadow-[0_0_30px_rgba(217,70,239,0.4)] hover:border-fuchsia-400/50 transition-all duration-500 h-full flex flex-col rounded-3xl">
                   <div className="h-52 bg-[#050508] relative overflow-hidden flex items-center justify-center border-b border-white/5">
                     <div className="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-fuchsia-900/30 via-transparent to-transparent group-hover:scale-110 transition-transform duration-700"></div>
                     <Code
@@ -330,10 +311,10 @@ export default function Portfolio() {
                     />
                   </div>
                   <CardContent className="p-8 flex flex-col flex-1">
-                    <h4 className="text-xl font-bold mb-3 text-white">
+                    <h4 className="text-xl font-bold mb-3 text-fuchsia-100">
                       Codquiskill Portal
                     </h4>
-                    <p className="text-sm text-slate-400 mb-8 flex-1 leading-relaxed">
+                    <p className="text-sm text-slate-300 mb-8 flex-1 leading-relaxed">
                       Developing and deploying the official web presence and educational platform for Codquiskill institute.
                     </p>
                     <div className="flex flex-wrap gap-2 mb-8 mt-auto">
@@ -358,7 +339,7 @@ export default function Portfolio() {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-md shadow-2xl hover:border-indigo-500/30 transition-all duration-500 h-full flex flex-col rounded-3xl">
+                <Card className="overflow-hidden border-white/5 bg-white/[0.02] backdrop-blur-md shadow-[0_0_20px_rgba(99,102,241,0.1)] hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] hover:border-indigo-400/50 transition-all duration-500 h-full flex flex-col rounded-3xl">
                   <div className="h-52 bg-[#050508] relative overflow-hidden flex items-center justify-center border-b border-white/5">
                     <div className="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-900/30 via-transparent to-transparent group-hover:scale-110 transition-transform duration-700"></div>
                     <Cpu
@@ -367,10 +348,10 @@ export default function Portfolio() {
                     />
                   </div>
                   <CardContent className="p-8 flex flex-col flex-1">
-                    <h4 className="text-xl font-bold mb-3 text-white">
+                    <h4 className="text-xl font-bold mb-3 text-indigo-100">
                       Healthcare Companion Robot
                     </h4>
-                    <p className="text-sm text-slate-400 mb-8 flex-1 leading-relaxed">
+                    <p className="text-sm text-slate-300 mb-8 flex-1 leading-relaxed">
                       Developed a microcontroller-based physical interface, showcasing end-to-end hardware and embedded systems engineering.
                     </p>
                     <div className="flex flex-wrap gap-2 mb-8 mt-auto">
@@ -459,13 +440,15 @@ export default function Portfolio() {
         </div>
       </main>
 
-      <footer className="border-t border-white/5 bg-[#050508] py-16 text-center text-slate-500 text-sm relative z-10">
-        <p className="font-medium tracking-wide">
-          © {new Date().getFullYear()} Prantik Bora. All rights reserved.
-        </p>
-        <p className="mt-3 opacity-60">
-          Engineered with Next.js, Framer Motion & Tailwind CSS
-        </p>
+      <footer className="border-t border-white/5 bg-transparent backdrop-blur-xl py-12 text-center text-slate-500 text-sm relative z-10 px-6">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-medium tracking-wide">
+            © {new Date().getFullYear()} Prantik Bora. All rights reserved.
+          </p>
+          <p className="opacity-60">
+            Engineered with Next.js, Framer Motion & Tailwind CSS
+          </p>
+        </div>
       </footer>
     </div>
   );
