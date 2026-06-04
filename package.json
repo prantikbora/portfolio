@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "@tsparticles/engine": "^4.0.4",
     "@tsparticles/react": "^4.0.4",
     "@tsparticles/slim": "^4.0.4",
