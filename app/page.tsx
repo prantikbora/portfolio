@@ -1,7 +1,6 @@
 // app/page.tsx
 "use client";
 
-import Head from "next/head";
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { Experience } from "@/components/sections/Experience";
@@ -11,10 +10,6 @@ import { Skills } from "@/components/sections/Skills";
 export default function Portfolio() {
   return (
     <div className="min-h-screen bg-[#050508] text-slate-200 font-sans selection:bg-violet-500/30 relative overflow-hidden">
-      <Head>
-        <title>Prantik Bora | Software Engineer & Co-Founder</title>
-      </Head>
-
       {/* --- TOP NAVIGATION --- */}
       <Navbar />
       
