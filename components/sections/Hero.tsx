@@ -32,7 +32,7 @@ export function Hero() {
   const { hero } = PORTFOLIO_DATA;
 
   return (
-    <section className="relative w-full min-h-[100dvh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-16 overflow-hidden bg-[#030108] text-white selection:bg-violet-500/40 font-sans">
+    <section className="relative w-full min-h-[100dvh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-16 overflow-hidden bg-transparent text-white selection:bg-violet-500/40 font-sans">
       
       {/* --- AMBIENT BACKGROUND GLOWS & SPOTLIGHTS --- */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">

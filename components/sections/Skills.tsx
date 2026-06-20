@@ -29,7 +29,7 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="w-full bg-[#030108] text-white py-24 sm:py-32 border-t border-white/5 relative font-sans">
+    <section id="skills" className="w-full bg-transparent text-white py-24 sm:py-32 relative font-sans">
       
       {/* Background Subtle Gradient */}
       <div className="absolute top-1/2 left-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_center_left,rgba(217,70,239,0.05),transparent_60%)] pointer-events-none -translate-y-1/2" />

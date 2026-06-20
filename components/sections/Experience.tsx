@@ -8,7 +8,7 @@ export function Experience() {
   const { experience } = PORTFOLIO_DATA;
 
   return (
-    <section id="experience" className="w-full bg-[#030108] text-white py-24 sm:py-32 selection:bg-violet-500/30 border-t border-white/5 relative overflow-hidden font-sans">
+    <section id="experience" className="w-full bg-transparent text-white py-24 sm:py-32 selection:bg-violet-500/30 relative overflow-hidden font-sans">
       
       {/* Background Subtle Gradient */}
       <div className="absolute top-0 right-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_top_right,rgba(124,58,237,0.08),transparent_50%)] pointer-events-none" />

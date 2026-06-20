@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     description: "Portfolio of Prantik Bora, showcasing software engineering, full-stack web development, and technical leadership.",
     siteName: "Prantik Bora Portfolio",
     images: [{
-      url: "/og-image.jpg", // Make sure to add this to public/ later
+      url: "/og-image.jpg", 
       width: 1200,
       height: 630,
       alt: "Prantik Bora - Software Engineer"
@@ -54,13 +56,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${poppins.variable} font-sans antialiased relative min-h-screen bg-[#050508] text-white`}
-      >
-        
-        <div className="relative z-10">{children}</div>
-      </body>
+    <html lang="en">
+     
+<body className={`${poppins.variable} font-sans antialiased relative min-h-screen text-white`}>
+  
+  
+  <div className="fixed inset-0 w-full h-full bg-[#050508] z-0 pointer-events-none">
+    <StarsBackground />
+    <ShootingStars />
+  </div>
+
+  
+  <main className="relative z-10">
+    {children}
+  </main>
+</body>
     </html>
   );
 }

@@ -151,7 +151,7 @@ export function Projects() {
   const { projects } = PORTFOLIO_DATA;
 
   return (
-    <section id="projects" className="w-full bg-[#030108] text-white py-24 sm:py-32 border-t border-white/5 relative font-sans">
+    <section id="projects" className="w-full bg-transparent text-white py-24 sm:py-32 relative font-sans">
       
       {/* Background Subtle Gradient */}
       <div className="absolute bottom-0 left-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_bottom_left,rgba(79,70,229,0.08),transparent_50%)] pointer-events-none" />
