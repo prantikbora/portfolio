@@ -1,8 +1,7 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { StarsBackground } from "@/components/ui/stars-background";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -11,30 +10,41 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Prantik Bora | Software Engineer & Co-Founder",
-  description: "Portfolio of Prantik Bora, showcasing software engineering, full-stack web development, and technical leadership.",
-  keywords: ["Prantik Bora", "Software Engineer", "Full-Stack Developer", "Next.js Developer", "React Native", "Embedded Systems", "Co-Founder", "Erthad Pvt Ltd"],
+  title: "Prantik Bora | Software Engineer",
+  description:
+    "Portfolio of Prantik Bora, showcasing software engineering, full-stack web development, and technical leadership.",
+  keywords: [
+    "Prantik Bora",
+    "Software Engineer",
+    "Full-Stack Developer",
+    "Next.js Developer",
+    "React Native",
+    "Embedded Systems",
+  ],
   authors: [{ name: "Prantik Bora" }],
   creator: "Prantik Bora",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://prantikbora.com", // Assuming domain, update if needed
-    title: "Prantik Bora | Software Engineer & Co-Founder",
-    description: "Portfolio of Prantik Bora, showcasing software engineering, full-stack web development, and technical leadership.",
+    url: "https://prantikbora.com", // Update this when you deploy
+    title: "Prantik Bora | Software Engineer",
+    description:
+      "Portfolio of Prantik Bora, showcasing software engineering, full-stack web development, and technical leadership.",
     siteName: "Prantik Bora Portfolio",
-    images: [{
-      url: "/og-image.jpg", 
-      width: 1200,
-      height: 630,
-      alt: "Prantik Bora - Software Engineer"
-    }],
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Prantik Bora - Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prantik Bora | Software Engineer & Co-Founder",
-    description: "Portfolio of Prantik Bora, showcasing software engineering, full-stack web development, and technical leadership.",
-    creator: "@prantikbora", // Update with actual twitter handle if exists
+    title: "Prantik Bora | Software Engineer",
+    description:
+      "Portfolio of Prantik Bora, showcasing software engineering, full-stack web development, and technical leadership.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -43,9 +53,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -56,21 +66,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-     
-<body className={`${poppins.variable} font-sans antialiased relative min-h-screen text-white`}>
-  
-  
-  <div className="fixed inset-0 w-full h-full bg-[#050508] z-0 pointer-events-none">
-    <StarsBackground />
-    <ShootingStars />
-  </div>
-
-  
-  <main className="relative z-10">
-    {children}
-  </main>
-</body>
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={`${poppins.variable} font-sans antialiased bg-slate-50 text-slate-900 text-lg selection:bg-blue-500/30`}
+      >
+        <main className="relative flex flex-col min-h-screen">{children}</main>
+      </body>
     </html>
   );
 }

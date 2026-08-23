@@ -1,30 +1,40 @@
 // app/page.tsx
-"use client";
-
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { Experience } from "@/components/sections/Experience";
-import { Projects } from "@/components/sections/Projects";
+import { About } from "@/components/sections/About";
+import { Journey } from "@/components/sections/Journey";
 import { Skills } from "@/components/sections/Skills";
+import { Projects } from "@/components/sections/Projects";
+import { Experience } from "@/components/sections/Experience";
+import { Education } from "@/components/sections/Education";
+import { Achievements } from "@/components/sections/Achievements";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-transparent text-slate-200 font-sans selection:bg-violet-500/30 relative overflow-hidden">
-      {/* --- TOP NAVIGATION --- */}
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-500/30">
       <Navbar />
 
-      <main className="relative z-10">
+      <main className="max-w-[1440px] w-full mx-auto px-6 sm:px-10 lg:px-16 space-y-24 lg:space-y-32 py-12">
         <Hero />
-        <Experience />
-        <Projects />
+        
+        {/* Removed the restrictive grid wrapper. About component handles its own internal layout. */}
+        <About />
+
+        <Journey />
+        
         <Skills />
+        
+        <Projects />
+
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-start pb-20">
+          <Experience />
+          <Education />
+          <Achievements />
+        </section>
       </main>
 
-      <footer className="border-t border-white/5 bg-[#030305]/50 backdrop-blur-md py-12 text-center text-slate-600 text-xs sm:text-sm px-6">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 font-sans tracking-wider">
-          <p>© {new Date().getFullYear()} PRANTIK BORA. ALL RIGHTS RESERVED.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
